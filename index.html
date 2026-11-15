@@ -1,1066 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OUDÉRA | Luxury Fragrances</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --black: #171713;
-  --gold: #bd9b60;
-  --cream: #f7f4ed;
-  --white: #fff;
-  --muted: #77756e;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family:'DM Sans',sans-serif;
-  background:var(--cream);
-  color:var(--black);
-}
-
-a { text-decoration:none; color:inherit; }
-button { cursor:pointer; font-family:inherit; }
-
-.announcement {
-  background:var(--black);
-  color:white;
-  text-align:center;
-  padding:10px;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-header {
-  height:82px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 7%;
-  position:sticky;
-  top:0;
-  z-index:10;
-  border-bottom:1px solid #eee;
-}
-
-.logo {
-  font-family:'Playfair Display',serif;
-  font-size:30px;
-  font-weight:600;
-  letter-spacing:5px;
-}
-
-.logo span { color:var(--gold); }
-
-nav {
-  display:flex;
-  gap:32px;
-  font-size:12px;
-  letter-spacing:1px;
-  font-weight:600;
-}
-
-nav a:hover { color:var(--gold); }
-
-.header-actions {
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.header-actions button {
-  border:0;
-  background:none;
-  font-size:19px;
-}
-
-.cart-count {
-  background:var(--gold);
-  color:white;
-  border-radius:50%;
-  font-size:10px;
-  padding:3px 6px;
-  vertical-align:top;
-}
-
-.hero {
-  min-height:570px;
-  display:flex;
-  align-items:center;
-  padding:70px 9%;
-  background:
-  linear-gradient(90deg,rgba(14,14,12,.94),rgba(14,14,12,.4)),
-  url('https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1800')
-  center/cover;
-  color:white;
-}
-
-.hero-content { max-width:570px; }
-
-.eyebrow {
-  color:var(--gold);
-  letter-spacing:4px;
-  font-size:11px;
-  margin-bottom:22px;
-}
-
-.hero h1 {
-  font-family:'Playfair Display',serif;
-  font-size:65px;
-  line-height:1.13;
-  font-weight:400;
-  margin-bottom:22px;
-}
-
-.hero p {
-  color:#ddd;
-  font-size:14px;
-  line-height:1.9;
-  max-width:420px;
-  margin-bottom:32px;
-}
-
-.btn {
-  display:inline-block;
-  padding:15px 32px;
-  background:var(--gold);
-  color:white;
-  border:1px solid var(--gold);
-  font-size:11px;
-  letter-spacing:2px;
-  transition:.3s;
-}
-
-.btn:hover {
-  background:transparent;
-  color:var(--gold);
-}
-
-.features {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  background:white;
-  padding:27px 7%;
-  text-align:center;
-  gap:20px;
-}
-
-.feature {
-  font-size:12px;
-  letter-spacing:1px;
-}
-
-.feature strong {
-  display:block;
-  margin-bottom:7px;
-  font-size:13px;
-}
-
-.section {
-  padding:85px 7%;
-}
-
-.section-heading {
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.section-heading small {
-  color:var(--gold);
-  letter-spacing:3px;
-  font-size:10px;
-}
-
-.section-heading h2 {
-  font-family:'Playfair Display',serif;
-  font-size:39px;
-  font-weight:400;
-  margin:12px 0;
-}
-
-.section-heading p {
-  color:var(--muted);
-  font-size:13px;
-}
-
-.categories {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-
-.category {
-  height:310px;
-  position:relative;
-  overflow:hidden;
-  background:#333;
-}
-
-.category img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.5s;
-}
-
-.category:hover img { transform:scale(1.06); }
-
-.category-overlay {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.75));
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding:30px;
-  color:white;
-  font-family:'Playfair Display',serif;
-  font-size:29px;
-}
-
-.shop-section { background:#fff; }
-
-.shop-controls {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-bottom:30px;
-}
-
-.filters { display:flex; gap:10px; flex-wrap:wrap; }
-
-.filter-btn {
-  border:1px solid #ddd;
-  background:white;
-  padding:10px 18px;
-  font-size:11px;
-  letter-spacing:1px;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  background:var(--black);
-  color:white;
-}
-
-.search {
-  border:1px solid #ddd;
-  padding:11px 15px;
-  outline:none;
-  width:210px;
-  font-size:12px;
-}
-
-.products {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:25px 17px;
-}
-
-.product-card { position:relative; }
-
-.product-image {
-  height:280px;
-  background:#eee;
-  position:relative;
-  overflow:hidden;
-}
-
-.product-image img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.4s;
-}
-
-.product-card:hover .product-image img {
-  transform:scale(1.05);
-}
-
-.tag {
-  position:absolute;
-  top:13px;
-  left:13px;
-  background:var(--gold);
-  color:white;
-  font-size:9px;
-  padding:7px 10px;
-  letter-spacing:1px;
-}
-
-.product-info { padding:16px 3px; }
-
-.product-info small {
-  color:var(--gold);
-  font-size:9px;
-  letter-spacing:2px;
-}
-
-.product-info h3 {
-  font-family:'Playfair Display',serif;
-  font-size:19px;
-  margin:8px 0;
-}
-
-.product-info p {
-  color:var(--muted);
-  font-size:11px;
-  margin-bottom:12px;
-}
-
-.price { font-weight:700; font-size:14px; }
-
-.add-btn {
-  width:100%;
-  background:var(--black);
-  color:white;
-  border:1px solid var(--black);
-  padding:12px;
-  margin-top:13px;
-  font-size:10px;
-  letter-spacing:1.5px;
-}
-
-.add-btn:hover {
-  background:var(--gold);
-  border-color:var(--gold);
-}
-
-.no-results {
-  grid-column:1/-1;
-  text-align:center;
-  padding:40px;
-  color:var(--muted);
-}
-
-.promo {
-  background:var(--black);
-  color:white;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:390px;
-}
-
-.promo-image {
-  background:url('https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=1000') center/cover;
-}
-
-.promo-content {
-  padding:65px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:flex-start;
-}
-
-.promo-content h2 {
-  font-family:'Playfair Display',serif;
-  font-size:43px;
-  font-weight:400;
-  margin:15px 0;
-}
-
-.promo-content p {
-  color:#ccc;
-  font-size:13px;
-  line-height:1.9;
-  margin-bottom:25px;
-}
-
-.newsletter {
-  padding:75px 20px;
-  text-align:center;
-}
-
-.newsletter h2 {
-  font-family:'Playfair Display',serif;
-  font-size:36px;
-  margin-bottom:12px;
-}
-
-.newsletter p {
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:22px;
-}
-
-.newsletter form {
-  display:flex;
-  max-width:440px;
-  margin:auto;
-}
-
-.newsletter input {
-  flex:1;
-  min-width:0;
-  padding:15px;
-  border:1px solid #ddd;
-}
-
-.newsletter button {
-  border:0;
-  background:var(--black);
-  color:white;
-  padding:0 20px;
-  font-size:11px;
-  letter-spacing:1px;
-}
-
-footer {
-  background:var(--black);
-  color:white;
-  padding:55px 7% 20px;
-}
-
-.footer-grid {
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:35px;
-  margin-bottom:40px;
-}
-
-footer h3 {
-  font-family:'Playfair Display',serif;
-  font-size:25px;
-  margin-bottom:15px;
-}
-
-footer h4 {
-  color:var(--gold);
-  margin-bottom:18px;
-  font-size:12px;
-  letter-spacing:1px;
-}
-
-footer p,footer a {
-  color:#aaa;
-  font-size:12px;
-  line-height:2.3;
-  display:block;
-}
-
-.copyright {
-  border-top:1px solid #444;
-  text-align:center;
-  padding-top:20px;
-  color:#888;
-  font-size:10px;
-}
-
-.cart-panel {
-  position:fixed;
-  top:0;
-  right:-420px;
-  width:min(400px,100%);
-  height:100vh;
-  background:white;
-  z-index:30;
-  padding:25px;
-  transition:.3s;
-  box-shadow:-5px 0 25px #0002;
-  display:flex;
-  flex-direction:column;
-}
-
-.cart-panel.open { right:0; }
-
-.cart-header {
-  display:flex;
-  justify-content:space-between;
-  border-bottom:1px solid #ddd;
-  padding-bottom:20px;
-}
-
-.cart-header h2 {
-  font-family:'Playfair Display',serif;
-}
-
-.close-cart {
-  border:0;
-  background:none;
-  font-size:23px;
-}
-
-.cart-items {
-  flex:1;
-  overflow:auto;
-  padding:20px 0;
-}
-
-.cart-item {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:13px 0;
-  border-bottom:1px solid #eee;
-  gap:10px;
-}
-
-.cart-item small { color:var(--muted); }
-
-.qty-controls {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.qty-controls button {
-  border:1px solid #ddd;
-  background:white;
-  padding:5px 9px;
-}
-
-.cart-footer { border-top:1px solid #ddd; padding-top:20px; }
-
-.cart-total {
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:20px;
-  font-weight:700;
-}
-
-.checkout {
-  width:100%;
-  padding:15px;
-  background:var(--black);
-  color:white;
-  border:0;
-  letter-spacing:1px;
-}
-
-.overlay {
-  position:fixed;
-  inset:0;
-  background:#0007;
-  z-index:20;
-  display:none;
-}
-
-.overlay.show { display:block; }
-
-.mobile-menu { display:none; }
-
-@media(max-width:850px) {
-  header { padding:0 5%; }
-  nav { gap:14px; }
-  .products { grid-template-columns:repeat(2,1fr); }
-  .product-image { height:260px; }
-  .hero h1 { font-size:49px; }
-  .promo-content { padding:35px; }
-}
-
-@media(max-width:600px) {
-  header { height:70px; }
-  .logo { font-size:23px; letter-spacing:3px; }
-  .mobile-menu { display:block; }
-  nav {
-    display:none;
-    position:absolute;
-    top:70px;
-    left:0;
-    right:0;
-    background:white;
-    padding:25px;
-    flex-direction:column;
-    box-shadow:0 5px 10px #0001;
-  }
-  nav.show { display:flex; }
-  .header-actions { gap:10px; }
-  .hero {
-    min-height:500px;
-    padding:50px 7%;
-    background-position:60% center;
-  }
-  .hero h1 { font-size:43px; }
-  .features { grid-template-columns:1fr; gap:20px; }
-  .categories { grid-template-columns:1fr; }
-  .category { height:270px; }
-  .section { padding:60px 5%; }
-  .section-heading h2 { font-size:32px; }
-  .products { gap:20px 10px; }
-  .product-image { height:200px; }
-  .product-info h3 { font-size:16px; }
-  .shop-controls { align-items:stretch; }
-  .search { width:100%; }
-  .promo { grid-template-columns:1fr; }
-  .promo-image { height:260px; }
-  .promo-content h2 { font-size:35px; }
-  .footer-grid { grid-template-columns:1fr; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>Redline Auto Spa | Premium Car Care</title>
+  <meta name="description" content="Premium car wash, detailing, wax polish and ceramic coating. Book your Redline Auto Spa appointment today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --surface: #121214;
+      --surface-light: #19191d;
+      --red: #c8102e;
+      --red-bright: #ed1738;
+      --text: #f6f3f2;
+      --muted: #a4a1a1;
+      --line: rgba(255,255,255,.1);
+      --font-heading: "Outfit", sans-serif;
+      --font-body: "DM Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11,11,13,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--red-bright); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: #d3d0d0; font-size: .91rem; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-toggle {
+      display: none;
+      color: #fff;
+      background: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 11px;
+      cursor: pointer;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      padding: 12px 19px;
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      transition: transform .2s, background .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .button:hover { background: var(--red-bright); transform: translateY(-2px); }
+    .button-outline { background: transparent; border-color: rgba(255,255,255,.35); }
+    .button-outline:hover { border-color: var(--red-bright); background: rgba(200,16,46,.12); }
+    .button-small { padding: 9px 14px; font-size: .88rem; }
+
+    .hero {
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(8,8,10,.97) 0%, rgba(8,8,10,.82) 48%, rgba(8,8,10,.28) 100%),
+        linear-gradient(0deg, var(--bg) 0%, transparent 22%),
+        url("https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=2000&q=85") center 55% / cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -170px;
+      top: 10%;
+      border-radius: 50%;
+      background: rgba(200,16,46,.2);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 690px; padding: 90px 0 110px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ff657d;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; height: 2px; width: 25px; background: var(--red-bright); }
+    h1, h2, h3 { font-family: var(--font-heading); line-height: 1.12; }
+    h1 { margin: 20px 0; font-size: clamp(3rem, 7vw, 5.7rem); letter-spacing: -.045em; }
+    h1 span { color: var(--red-bright); }
+    .hero p { color: #cbc7c7; max-width: 540px; font-size: 1.05rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .hero-note { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 38px; color: #ddd; font-size: .88rem; }
+    .hero-note span::before { content: "✓"; color: #ff526d; font-weight: 800; margin-right: 8px; }
+
+    section { padding: 92px 0; }
+    .section-heading { max-width: 670px; margin-bottom: 38px; }
+    .section-heading h2 { margin: 12px 0; font-size: clamp(2.1rem, 4vw, 3.2rem); letter-spacing: -.035em; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .center { text-align: center; margin-left: auto; margin-right: auto; }
+    .center .eyebrow { justify-content: center; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 12px;
+      margin-top: -1px;
+      position: relative;
+      z-index: 2;
+    }
+    .stat { text-align: center; padding: 24px 12px; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat strong { display: block; color: #fff; font-family: var(--font-heading); font-size: 1.6rem; }
+    .stat span { color: var(--muted); font-size: .85rem; }
+
+    .packages { background: linear-gradient(180deg, #0b0b0d, #101012 45%, #0b0b0d); }
+    .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+    .package {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      transition: transform .2s, border-color .2s;
+    }
+    .package:hover { transform: translateY(-5px); border-color: rgba(237,23,56,.55); }
+    .package.featured { border-color: var(--red); box-shadow: 0 0 35px rgba(200,16,46,.12); }
+    .popular {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: var(--red);
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+    .package h3 { margin: 0 0 7px; font-size: 1.4rem; }
+    .package .description { min-height: 45px; margin: 0; color: var(--muted); font-size: .9rem; }
+    .price { margin: 22px 0; font-family: var(--font-heading); font-size: 2.25rem; font-weight: 700; }
+    .price small { color: var(--muted); font: 500 .82rem var(--font-body); }
+    .package ul { list-style: none; padding: 0; margin: 0 0 25px; flex: 1; }
+    .package li { color: #dedbdb; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.07); font-size: .9rem; }
+    .package li::before { content: "✓"; color: #ff526d; font-weight: 800; margin-right: 10px; }
+    .package .button { width: 100%; }
+    .price-note { text-align: center; margin-top: 22px; color: var(--muted); font-size: .82rem; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .service {
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 10px;
+    }
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 16px;
+      background: rgba(200,16,46,.15);
+      color: #ff536e;
+      border-radius: 10px;
+      font-size: 1.35rem;
+    }
+    .service h3 { margin: 0 0 7px; font-size: 1.1rem; }
+    .service p { margin: 0; color: var(--muted); font-size: .89rem; }
+
+    .process { background: #101012; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .step { border-top: 1px solid var(--line); padding-top: 20px; }
+    .step-number { color: var(--red-bright); font-family: var(--font-heading); font-size: .9rem; font-weight: 800; letter-spacing: .1em; }
+    .step h3 { margin: 10px 0 7px; font-size: 1.25rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    .booking-wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; align-items: start; }
+    .booking-copy h2 { margin: 12px 0; font-size: clamp(2.1rem, 4vw, 3rem); }
+    .booking-copy p { color: var(--muted); }
+    .contact-line { margin-top: 25px; color: #e4e0e0; }
+    .contact-line strong { color: white; }
+    .booking-form {
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: #e7e3e3; font-size: .85rem; font-weight: 600; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 13px;
+      color: #fff;
+      background: #0d0d0f;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 6px;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--red-bright); }
+    select option { background: #121214; }
+    textarea { min-height: 90px; resize: vertical; }
+    .booking-form .button { width: 100%; margin-top: 17px; }
+    .form-message { display: none; margin: 13px 0 0; color: #8fe1a2; font-size: .9rem; }
+
+    footer { border-top: 1px solid var(--line); background: #080809; padding: 27px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .footer-inner p { color: var(--muted); margin: 0; font-size: .83rem; }
+    .footer-links { display: flex; gap: 18px; color: #c7c3c3; font-size: .84rem; }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 74px;
+        padding: 18px 22px 22px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 17px;
+        background: #111113;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links .button { text-align: center; }
+      .nav-toggle { display: block; }
+      .package-grid { grid-template-columns: 1fr 1fr; }
+      .package:last-child { grid-column: 1 / -1; }
+      .booking-wrap { grid-template-columns: 1fr; gap: 25px; }
+    }
+    @media (max-width: 580px) {
+      .container { width: min(100% - 30px, 1120px); }
+      .hero { min-height: 590px; background-position: 58% center; }
+      .hero-content { padding: 75px 0 88px; }
+      .hero p { font-size: .97rem; }
+      section { padding: 70px 0; }
+      .stats { grid-template-columns: 1fr; }
+      .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+      .package-grid, .services-grid, .steps { grid-template-columns: 1fr; }
+      .package:last-child { grid-column: auto; }
+      .package .description { min-height: 0; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .booking-form { padding: 20px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="topbar">Premium car care, without compromise — Book your visit today</div>
 
-<div class="announcement">
-  COMPLIMENTARY DELIVERY ON ORDERS ABOVE RS. 5,000
-</div>
-
-<header>
-  <button class="mobile-menu" onclick="toggleMenu()">☰</button>
-
-  <a href="#" class="logo">OUDÉ<span>RA</span></a>
-
-  <nav id="navigation">
-    <a href="#home">HOME</a>
-    <a href="#shop">SHOP ALL</a>
-    <a href="#categories">COLLECTIONS</a>
-    <a href="#story">OUR STORY</a>
-  </nav>
-
-  <div class="header-actions">
-    <button onclick="document.getElementById('searchBox').focus()">⌕</button>
-    <button onclick="toggleCart()">♧ <span class="cart-count" id="cartCount">0</span></button>
-  </div>
-</header>
-
-<!-- HERO -->
-
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="eyebrow">THE ART OF FINE FRAGRANCE</div>
-    <h1>Make Every<br>Moment<br>Unforgettable.</h1>
-    <p>
-      Discover the art of extraordinary scents.
-      Crafted for those who believe that a fragrance
-      is more than a scent — it's an identity.
-    </p>
-    <a href="#shop" class="btn">EXPLORE COLLECTION</a>
-  </div>
-</section>
-
-<!-- FEATURES -->
-
-<section class="features">
-  <div class="feature">
-    <strong>✧ PREMIUM QUALITY</strong>
-    Exceptional fragrance experiences
-  </div>
-  <div class="feature">
-    <strong>✧ NATIONWIDE DELIVERY</strong>
-    Across Pakistan
-  </div>
-  <div class="feature">
-    <strong>✧ ELEGANT PACKAGING</strong>
-    Perfect for gifting
-  </div>
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="section" id="categories">
-  <div class="section-heading">
-    <small>DISCOVER YOUR SIGNATURE</small>
-    <h2>Shop By Collection</h2>
-    <p>A fragrance for every personality.</p>
-  </div>
-
-  <div class="categories">
-    <a href="#shop" class="category" onclick="setCategory('Men')">
-      <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700" alt="Men fragrances">
-      <div class="category-overlay">For Him</div>
-    </a>
-
-    <a href="#shop" class="category" onclick="setCategory('Women')">
-      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700" alt="Women fragrances">
-      <div class="category-overlay">For Her</div>
-    </a>
-
-    <a href="#shop" class="category" onclick="setCategory('Unisex')">
-      <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=700" alt="Unisex fragrances">
-      <div class="category-overlay">Unisex</div>
-    </a>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-
-<section class="section shop-section" id="shop">
-  <div class="section-heading">
-    <small>THE OUDÉRA SELECTION</small>
-    <h2>Our Best Sellers</h2>
-    <p>Find the fragrance that speaks for you.</p>
-  </div>
-
-  <div class="shop-controls">
-    <div class="filters">
-      <button class="filter-btn active" onclick="setCategory('All',this)">ALL</button>
-      <button class="filter-btn" onclick="setCategory('Men',this)">MEN</button>
-      <button class="filter-btn" onclick="setCategory('Women',this)">WOMEN</button>
-      <button class="filter-btn" onclick="setCategory('Unisex',this)">UNISEX</button>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">REDLINE <span>AUTO SPA</span></a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#packages">Packages</a>
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#booking">Contact</a>
+        <a class="button button-small" href="#booking">Book a wash <span>↗</span></a>
+      </nav>
     </div>
+  </header>
 
-    <input
-      id="searchBox"
-      class="search"
-      type="search"
-      placeholder="Search fragrances..."
-      oninput="renderProducts()">
-  </div>
-
-  <div class="products" id="productGrid"></div>
-</section>
-
-<!-- BRAND STORY -->
-
-<section class="promo" id="story">
-  <div class="promo-image"></div>
-  <div class="promo-content">
-    <div class="eyebrow">A SCENT. A STORY. A LEGACY.</div>
-    <h2>Beyond Ordinary.<br>Beyond Fragrance.</h2>
-    <p>
-      At OUDÉRA, we believe every fragrance
-      tells a story. Our collection celebrates
-      elegance, individuality and timeless luxury.
-      Find the scent that becomes your signature.
-    </p>
-    <a href="#shop" class="btn">DISCOVER MORE</a>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-
-<section class="newsletter">
-  <h2>Join The OUDÉRA Circle</h2>
-  <p>Subscribe for new launches, exclusive offers and fragrance inspiration.</p>
-
-  <form onsubmit="subscribe(event)">
-    <input type="email" id="email" placeholder="Your email address" required>
-    <button type="submit">SUBSCRIBE</button>
-  </form>
-  <p id="subscribeMessage"></p>
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-  <div class="footer-grid">
-    <div>
-      <h3>OUDÉRA</h3>
-      <p>Luxury is not just what you wear.<br>
-      It's what people remember.</p>
-    </div>
-
-    <div>
-      <h4>QUICK LINKS</h4>
-      <a href="#home">Home</a>
-      <a href="#shop">Shop fragrances</a>
-      <a href="#categories">Collections</a>
-      <a href="#story">Our story</a>
-    </div>
-
-    <div>
-      <h4>CONTACT</h4>
-      <p>Pakistan</p>
-      <p>Customer Support</p>
-      <p>Instagram: @oudera</p>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2026 OUDÉRA. ALL RIGHTS RESERVED.
-    | DEMO E-COMMERCE WEBSITE
-  </div>
-</footer>
-
-<!-- CART -->
-
-<div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
-<aside class="cart-panel" id="cartPanel">
-  <div class="cart-header">
-    <h2>Your Shopping Bag</h2>
-    <button class="close-cart" onclick="toggleCart()">×</button>
-  </div>
-
-  <div class="cart-items" id="cartItems">
-    Your bag is empty.
-  </div>
-
-  <div class="cart-footer">
-    <div class="cart-total">
-      <span>Total</span>
-      <span id="cartTotal">Rs. 0</span>
-    </div>
-    <button class="checkout" onclick="checkout()">ORDER ON WHATSAPP</button>
-  </div>
-</aside>
-
-<script>
-
-// PRODUCT DATABASE
-
-const products = [
-  {
-    id:1,
-    name:"Royal Oud",
-    category:"Men",
-    price:4500,
-    description:"Woody · Oud · Amber",
-    image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600",
-    tag:"BEST SELLER"
-  },
-  {
-    id:2,
-    name:"Velvet Rose",
-    category:"Women",
-    price:3800,
-    description:"Rose · Floral · Musk",
-    image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600",
-    tag:"POPULAR"
-  },
-  {
-    id:3,
-    name:"Midnight Noir",
-    category:"Men",
-    price:5200,
-    description:"Spicy · Leather · Wood",
-    image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600",
-    tag:"NEW"
-  },
-  {
-    id:4,
-    name:"Golden Aura",
-    category:"Unisex",
-    price:4800,
-    description:"Amber · Vanilla · Musk",
-    image:"https://images.unsplash.com/photo-1590736969955-71cc94901144?w=600",
-    tag:"EXCLUSIVE"
-  },
-  {
-    id:5,
-    name:"Bloom Essence",
-    category:"Women",
-    price:3500,
-    description:"Jasmine · Rose · Citrus",
-    image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600",
-    tag:"NEW"
-  },
-  {
-    id:6,
-    name:"Oud Imperial",
-    category:"Unisex",
-    price:6500,
-    description:"Oud · Saffron · Amber",
-    image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600",
-    tag:"LUXURY"
-  },
-  {
-    id:7,
-    name:"Ocean Mist",
-    category:"Men",
-    price:3200,
-    description:"Fresh · Aquatic · Citrus",
-    image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600",
-    tag:"FRESH"
-  },
-  {
-    id:8,
-    name:"Pure Elegance",
-    category:"Women",
-    price:4200,
-    description:"Vanilla · Floral · Musk",
-    image:"https://images.unsplash.com/photo-1590736969955-71cc94901144?w=600",
-    tag:"POPULAR"
-  }
-];
-
-let selectedCategory = "All";
-let cart = [];
-
-// DISPLAY PRODUCTS
-
-function renderProducts() {
-  const grid = document.getElementById("productGrid");
-  const search = document.getElementById("searchBox").value.toLowerCase();
-
-  const filtered = products.filter(p =>
-    (selectedCategory === "All" || p.category === selectedCategory) &&
-    (p.name.toLowerCase().includes(search) ||
-     p.description.toLowerCase().includes(search))
-  );
-
-  grid.innerHTML = "";
-
-  if(filtered.length === 0) {
-    grid.innerHTML = '<div class="no-results">No fragrances found.</div>';
-    return;
-  }
-
-  filtered.forEach(p => {
-    grid.innerHTML += `
-      <div class="product-card">
-        <div class="product-image">
-          <span class="tag">${p.tag}</span>
-          <img src="${p.image}" alt="${p.name}" loading="lazy">
-        </div>
-
-        <div class="product-info">
-          <small>${p.category.toUpperCase()} FRAGRANCE</small>
-          <h3>${p.name}</h3>
-          <p>${p.description}</p>
-          <div class="price">Rs. ${p.price.toLocaleString("en-PK")}</div>
-          <button class="add-btn" onclick="addToCart(${p.id})">
-            ADD TO BAG +
-          </button>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">The Redline difference</span>
+          <h1>Make every drive<br>feel <span>brand new.</span></h1>
+          <p>From a quick, spotless wash to a full showroom-quality detail — give your car the care it deserves.</p>
+          <div class="hero-actions">
+            <a class="button" href="#packages">Explore packages <span>→</span></a>
+            <a class="button button-outline" href="#booking">Book an appointment</a>
+          </div>
+          <div class="hero-note">
+            <span>Careful hand wash</span>
+            <span>Premium products</span>
+            <span>Detailing experts</span>
+          </div>
         </div>
       </div>
-    `;
-  });
-}
+    </section>
 
-// CATEGORY FILTER
-
-function setCategory(category,button) {
-  selectedCategory = category;
-
-  document.querySelectorAll(".filter-btn").forEach(b =>
-    b.classList.remove("active")
-  );
-
-  if(button) {
-    button.classList.add("active");
-  } else {
-    document.querySelectorAll(".filter-btn").forEach(b => {
-      if(b.textContent.trim().toLowerCase() === category.toLowerCase()) {
-        b.classList.add("active");
-      }
-    });
-  }
-
-  renderProducts();
-}
-
-// ADD TO CART
-
-function addToCart(id) {
-  const item = cart.find(p => p.id === id);
-
-  if(item) {
-    item.quantity++;
-  } else {
-    cart.push({
-      ...products.find(p => p.id === id),
-      quantity:1
-    });
-  }
-
-  updateCart();
-  alert("Fragrance added to your bag!");
-}
-
-// UPDATE CART
-
-function updateCart() {
-  const count = cart.reduce((sum,p) => sum + p.quantity,0);
-  const total = cart.reduce((sum,p) => sum + p.price*p.quantity,0);
-
-  document.getElementById("cartCount").textContent = count;
-  document.getElementById("cartTotal").textContent =
-    "Rs. " + total.toLocaleString("en-PK");
-
-  const container = document.getElementById("cartItems");
-
-  if(cart.length === 0) {
-    container.innerHTML = "Your bag is empty.";
-    return;
-  }
-
-  container.innerHTML = cart.map(p => `
-    <div class="cart-item">
-      <div>
-        <strong>${p.name}</strong><br>
-        <small>Rs. ${p.price.toLocaleString("en-PK")}</small>
-      </div>
-
-      <div class="qty-controls">
-        <button onclick="changeQty(${p.id},-1)">−</button>
-        ${p.quantity}
-        <button onclick="changeQty(${p.id},1)">+</button>
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><strong>Premium</strong><span>Quality products</span></div>
+        <div class="stat"><strong>Expert care</strong><span>For every vehicle</span></div>
+        <div class="stat"><strong>Made easy</strong><span>Simple booking</span></div>
       </div>
     </div>
-  `).join("");
-}
 
-// CHANGE QUANTITY
+    <section class="packages" id="packages">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="eyebrow">Our packages</span>
+          <h2>Choose your shine.</h2>
+          <p>Simple packages for every car and every kind of day. Prices below are sample rates in PKR.</p>
+        </div>
 
-function changeQty(id,amount) {
-  const item = cart.find(p => p.id === id);
+        <div class="package-grid">
+          <article class="package">
+            <h3>Essential Wash</h3>
+            <p class="description">A fresh, clean car — inside and out.</p>
+            <div class="price">Rs. 1,500 <small>/ from</small></div>
+            <ul>
+              <li>Exterior hand wash</li>
+              <li>Wheel and tyre cleaning</li>
+              <li>Interior vacuum</li>
+              <li>Dashboard wipe-down</li>
+              <li>Window cleaning</li>
+            </ul>
+            <a class="button button-outline" href="#booking" data-package="Essential Wash">Choose package</a>
+          </article>
 
-  if(!item) return;
+          <article class="package featured">
+            <span class="popular">Most popular</span>
+            <h3>Signature Detail</h3>
+            <p class="description">A deeper clean with a brilliant finish.</p>
+            <div class="price">Rs. 4,500 <small>/ from</small></div>
+            <ul>
+              <li>Everything in Essential Wash</li>
+              <li>Interior deep cleaning</li>
+              <li>Wax polish finish</li>
+              <li>Tyre dressing</li>
+              <li>Door jamb cleaning</li>
+              <li>Fresh interior fragrance</li>
+            </ul>
+            <a class="button" href="#booking" data-package="Signature Detail">Choose package</a>
+          </article>
 
-  item.quantity += amount;
+          <article class="package">
+            <h3>Ultimate Protection</h3>
+            <p class="description">Maximum gloss, care and lasting protection.</p>
+            <div class="price">Rs. 12,000 <small>/ from</small></div>
+            <ul>
+              <li>Everything in Signature Detail</li>
+              <li>Paint decontamination</li>
+              <li>Machine polish</li>
+              <li>Premium paint sealant</li>
+              <li>Leather conditioning</li>
+              <li>Engine bay cleaning</li>
+            </ul>
+            <a class="button button-outline" href="#booking" data-package="Ultimate Protection">Choose package</a>
+          </article>
+        </div>
+        <p class="price-note">Final price may vary depending on vehicle size and condition. Please confirm when booking.</p>
+      </div>
+    </section>
 
-  if(item.quantity <= 0) {
-    cart = cart.filter(p => p.id !== id);
-  }
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">More than a wash</span>
+          <h2>Complete care for your car.</h2>
+          <p>Pick a package or ask us about individual services to keep your car looking its best.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service">
+            <div class="service-icon">✦</div>
+            <h3>Wax & polish</h3>
+            <p>Bring back the paint's shine and add a layer of protection against everyday dirt.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon">◈</div>
+            <h3>Interior detailing</h3>
+            <p>Deep cleaning for seats, carpets, dashboard and those hard-to-reach spots.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon">◉</div>
+            <h3>Ceramic coating</h3>
+            <p>Long-lasting gloss and paint protection. Ask us for a vehicle-specific quote.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon">⌁</div>
+            <h3>Engine bay cleaning</h3>
+            <p>Careful cleaning to make your engine bay look neat and well-maintained.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon">◇</div>
+            <h3>Headlight restoration</h3>
+            <p>Help cloudy headlights look clearer and give your car a fresher appearance.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon">✧</div>
+            <h3>Tyre & wheel care</h3>
+            <p>Remove built-up grime and finish with a clean, rich look for your wheels.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  updateCart();
-}
+    <section class="process" id="process">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Easy as 1, 2, 3</span>
+          <h2>Your clean-car day, sorted.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">STEP 01</span>
+            <h3>Pick your package</h3>
+            <p>Choose the service that fits your car and the result you're after.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">STEP 02</span>
+            <h3>Send a booking request</h3>
+            <p>Tell us your preferred date and vehicle details using the form below.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">STEP 03</span>
+            <h3>Show up and shine</h3>
+            <p>Bring your car in and let our team take care of the rest.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-// CART OPEN/CLOSE
+    <section id="booking">
+      <div class="container booking-wrap">
+        <div class="booking-copy">
+          <span class="eyebrow">Let’s get you booked</span>
+          <h2>Ready for that fresh-car feeling?</h2>
+          <p>Fill in the form with your preferred package and we’ll be ready to confirm your appointment.</p>
+          <div class="contact-line"><strong>Location:</strong> Your City, Pakistan</div>
+          <div class="contact-line"><strong>Hours:</strong> Monday – Sunday, 10:00 AM – 10:00 PM</div>
+          <div class="contact-line"><strong>Phone:</strong> +92 300 1234567</div>
+        </div>
 
-function toggleCart() {
-  document.getElementById("cartPanel").classList.toggle("open");
-  document.getElementById("overlay").classList.toggle("show");
-}
+        <form class="booking-form" id="bookingForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="e.g. Ali Khan" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="+92 300 1234567" required>
+            </div>
+            <div class="field">
+              <label for="vehicle">Vehicle</label>
+              <input id="vehicle" name="vehicle" type="text" placeholder="e.g. Honda Civic" required>
+            </div>
+            <div class="field">
+              <label for="package">Choose a package</label>
+              <select id="package" name="package" required>
+                <option value="">Select a package</option>
+                <option>Essential Wash</option>
+                <option>Signature Detail</option>
+                <option>Ultimate Protection</option>
+                <option>Individual service</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="date">Preferred date</label>
+              <input id="date" name="date" type="date" required>
+            </div>
+            <div class="field full">
+              <label for="notes">Anything else? (optional)</label>
+              <textarea id="notes" name="notes" placeholder="Tell us about your car or the service you need"></textarea>
+            </div>
+          </div>
+          <button class="button" type="submit">Request a booking <span>→</span></button>
+          <p class="form-message" id="formMessage" role="status">Thanks! Your sample booking request has been received.</p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-function toggleMenu() {
-  document.getElementById("navigation").classList.toggle("show");
-}
+  <footer>
+    <div class="container footer-inner">
+      <a class="logo" href="#home">REDLINE <span>AUTO SPA</span></a>
+      <p>© <span id="year"></span> Redline Auto Spa. Sample website — update contact details before publishing.</p>
+      <div class="footer-links">
+        <a href="#packages">Packages</a>
+        <a href="#services">Services</a>
+        <a href="#booking">Book now</a>
+      </div>
+    </div>
+  </footer>
 
-// WHATSAPP CHECKOUT
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
 
-function checkout() {
-  if(cart.length === 0) {
-    alert("Your shopping bag is empty!");
-    return;
-  }
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.textContent = isOpen ? "✕" : "☰";
+    });
 
-  const phone = "923001234567"; // Replace with your WhatsApp number
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.textContent = "☰";
+      });
+    });
 
-  let message = "Hello OUDÉRA! I want to place an order:\n\n";
+    document.querySelectorAll("[data-package]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelector("#package").value = button.dataset.package;
+      });
+    });
 
-  cart.forEach(p => {
-    message += `${p.name} x ${p.quantity} = Rs. ${p.price*p.quantity}\n`;
-  });
+    document.querySelector("#bookingForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.querySelector("#formMessage").style.display = "block";
+      event.target.reset();
+    });
 
-  const total = cart.reduce((sum,p) => sum+p.price*p.quantity,0);
-
-  message += `\nTotal: Rs. ${total}\n\nPlease confirm my order.`;
-
-  window.open(
-    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
-    "_blank"
-  );
-}
-
-// NEWSLETTER DEMO
-
-function subscribe(event) {
-  event.preventDefault();
-
-  document.getElementById("subscribeMessage").textContent =
-    "Thank you for joining the OUDÉRA circle!";
-
-  document.getElementById("email").value = "";
-}
-
-// INITIALIZE
-
-renderProducts();
-updateCart();
-
-</script>
-
+    document.querySelector("#year").textContent = new Date().getFullYear();
+    document.querySelector("#date").min = new Date().toISOString().split("T")[0];
+  </script>
 </body>
 </html>
-# Apex-
